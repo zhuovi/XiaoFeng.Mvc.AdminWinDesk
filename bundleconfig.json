@@ -1,0 +1,37 @@
+[
+  {
+    "outputFileName": "wwwroot/windesk/scripts/alerter.min.js",
+    "inputFiles": [
+      "wwwroot/windesk/scripts/alerter.js"
+    ],
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    },
+    "sourceMap": false
+  },
+  {
+    "outputFileName": "wwwroot/windesk/scripts/windesk.min.js",
+    "inputFiles": [
+      "wwwroot/windesk/scripts/windesk.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/windesk/css/alerter.min.css",
+    "inputFiles": [
+      "wwwroot/windesk/css/alerter.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/windesk/css/windesk.min.css",
+    "inputFiles": [
+      "wwwroot/windesk/css/windesk.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/windesk/css/login.min.css",
+    "inputFiles": [
+      "wwwroot/windesk/css/login.css"
+    ]
+  }
+]

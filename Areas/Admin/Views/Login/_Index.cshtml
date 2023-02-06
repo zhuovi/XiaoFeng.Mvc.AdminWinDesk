@@ -1,0 +1,187 @@
+﻿@inject IConfiguration config
+@{
+    var setting = ProgramSetting.Current;
+    ViewBag.Title = Translations.Get("admin:login","登录");
+    var clickcaptcha = (XiaoFeng.Mvc.CaptchaType.ClickArrow | XiaoFeng.Mvc.CaptchaType.ClickPicture).HasFlag(setting.AdminLoginCaptcha)? setting.AdminLoginCaptcha.ToString().ToLower():"";
+    var captchaScript = clickcaptcha == "" ? "" : (clickcaptcha + @".render({
+            elem: 'user-login-vercode',
+            code: '/ValidateCode',
+            verify:'/ValidateCode/Verify" + setting.AdminLoginCaptcha.ToString().Replace("Click", "") + @"'
+        });");
+
+}<environment names="Development">
+    <script type="text/javascript" src="/Plugin/Encrypt/core-min.js"></script>
+    <script type="text/javascript" src="/Plugin/Encrypt/cipher-core-min.js"></script>
+    <script type="text/javascript" src="/Plugin/Encrypt/mode-ecb-min.js"></script>
+    <script type="text/javascript" src="/Plugin/Encrypt/format-hex-min.js"></script>
+    <script type="text/javascript" src="/Plugin/Encrypt/aes-min.js"></script>
+</environment><environment names="Production">
+    <script type="text/javascript" src="/Plugin/Encrypt/core-min.js"></script>
+    <script type="text/javascript" src="/Plugin/Encrypt/cipher-core-min.js"></script>
+    <script type="text/javascript" src="/Plugin/Encrypt/mode-ecb-min.js"></script>
+    <script type="text/javascript" src="/Plugin/Encrypt/format-hex-min.js"></script>
+    <script type="text/javascript" src="/Plugin/Encrypt/aes-min.js"></script>
+</environment>
+<link href="/windesk/css/login.min.css" type="text/css" rel="stylesheet" />
+<div class="windesk">
+    <div class="main layui-form anim">
+        <dl>
+            <dt>
+                <h2>登录入口</h2>
+                <h3>FAYELF v @config.GetConfig("Version:admin","1.0")</h3>
+            </dt>
+            <dd>
+                <input type="text" name="username" lay-verify="required" placeholder="@Translations.Get("admin:account","帐号")" class="layui-input" lay-reqText="@Translations.Get("admin:enteraccount", "请输入帐号.")" />
+            </dd>
+            <dd style="position:relative;">
+                <input type="password" name="password" id="password" lay-verify="required" placeholder="@Translations.Get("admin:password","密码")" lay-reqText="@Translations.Get("admin:enterconfirmpwd", "请输入密码.")" />
+                <div class="zw-icon zw-icon-pwdhide pwd-eye"></div>
+            </dd>
+            <dd class="code">
+                @if ((XiaoFeng.Mvc.CaptchaType.ClickArrow | XiaoFeng.Mvc.CaptchaType.ClickPicture).HasFlag(setting.AdminLoginCaptcha))
+                {
+                    <input type="hidden" id="user-login-vercode" name="code" lay-verify="required" lay-reqText="@Translations.Get("admin:clickverify", "请完成安全验证.")">
+                }
+                else{
+                    <div><input type="text" name="code" id="code" lay-verify="required" maxlength="5" placeholder="@Translations.Get("admin:checkcode","校验码")" lay-reqText="@Translations.Get("admin:entercheckcode", "请输入验证码.")" /></div>
+                    <img src="/ValidateCode?N=5" id="imgcode" title="@Translations.Get("admin:checkcodeclickanother","看不清?点击换一个!")" />
+                }
+            </dd>
+            <dd>
+                <input type="button" name="login" id="login" lay-submit lay-filter="user-login-submit" value="@Translations.Get("admin:signin", "登 入")" />
+            </dd>
+        </dl>
+    </div>
+</div>
+<div style="position:absolute;width:100%;bottom:70px;z-index:1;" id="wave">
+    <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+            <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"></path>
+        </defs>
+        <g class="parallax">
+            <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(255,255,255,0.5"></use>
+            <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.4)"></use>
+            <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.2)"></use>
+            <use xlink:href="#gentle-wave" x="48" y="7" fill="rgba(255,255,255,1)"></use>
+        </g>
+    </svg>
+</div>
+<div class="footer">
+    @Html.Raw(config.GetConfig("copyright:description"))
+</div>
+<script type="text/javascript">
+    layui.use(['form', 'layer' @Html.Raw(clickcaptcha==""?"":(",'"+clickcaptcha+"'"))], function () {
+        var $ = layui.jquery
+            , form = layui.form
+            , layer = layui.layer
+    @(clickcaptcha == "" ? "" : ("," + clickcaptcha + "= layui." + clickcaptcha));
+
+        form.render();
+        var encryptdata = function (data) {
+            var key = {
+                sigBytes: 32,
+                words: [1144142145, 875708985, 875574322, 825312579, 1094989109, 1178677558, 860173620, 843198769]
+            };
+            return CryptoJS.AES.encrypt(data, key, {
+                iv: (function () {
+                    var iv = JSON.parse(JSON.stringify(key));
+                    iv.sigBytes = 16;
+                    iv.words.splice(4, 4);
+                    return iv;
+                })(),
+                mode: CryptoJS.mode.CBC,
+                padding: CryptoJS.pad.Pkcs7
+            }).toString(CryptoJS.format.Hex);
+        }
+    @Html.Raw(captchaScript);
+        //提交
+        form.on('submit(user-login-submit)', function (obj) {
+            //请求登入接口
+            if (obj.field.username.length < 5) {
+                layer.msg('@Translations.Get("admin:accountnumberincorrect", "帐号位数不正确.")', {
+                    icon: 2
+                    , time: 1000
+                }, function () {
+                    $("#username").focus();
+                });
+                return;
+            }
+            if (obj.field.password.length < 5) {
+                layer.msg('@Translations.Get("admin:passwordnumberincorrect", "密码位数不正确.")', {
+                    icon: 2
+                    , time: 1000
+                }, function () {
+                    $("#password").focus();
+                });
+                return;
+            }
+            if (obj.field.hasOwnProperty("code") && obj.field.code.length == 0) {
+                layer.msg('@Translations.Get("admin:checkcodenumberincorrect", "验证码位数不正确.")', {
+                    icon: 2
+                    , time: 1000
+                }, function () {
+                    $("#code").focus();
+                });
+                return;
+            }
+            Object.keys(obj.field).forEach(function (key) {
+                if (key == 'remember') return;
+                obj.field[key] = encryptdata(obj.field[key]);
+            });
+            $.ajax({
+                type: 'post'
+                , data: obj.field
+                , success: function (e) {
+                    if (e.status == 'success') {
+                        layer.msg('@Translations.Get("admin:loginsuccess", "登录成功")', {
+                            icon: 1
+                            , time: 1000
+                        }, function () {
+                            var url = ZW.CMS.Common.GetQuery("url");
+                            url = url == '' ? '/@(setting.AdminAreaName)/' : url;
+                            url = url + (url.indexOf("?") > -1 ? "&" : "?") + "_=" + new Date().getTime();
+                            location.href = url;
+                        });
+                    } else
+                        layer.msg('@(Translations.Get("admin:loginerror", "登录失败"))[' + e.message + '].', { icon: 2, time: 2000 }, function () {
+                            $("#imgcode").trigger("click");
+                        });
+                },
+                error: function () {
+                    layer.msg('@Translations.Get("admin:servererror", "服务器出错.")', { icon: 2, time: 1000 });
+                }
+            });
+        });
+        var height = $(window).height();
+        var top = (height - 400) / 2 - 50;
+        if (top < 0) top = 0;
+        $(".main").css("padding-top", top);
+        $(document).keydown(function (e) {
+            if (e.keyCode == 13)
+                $("#login").trigger("click");
+        });
+        $("#imgcode").click(function () {
+            var src = this.src.replace(/[?&]_=\d+$/g, '');
+            this.src = src + (src.indexOf("?") == -1 ? "?" : "&") + "_=" + (new Date).getTime();
+            $("#code").val('').focus();
+        });
+        $(function () {
+            $(".anim").addClass("anims");
+            $("#wave").css('bottom', $('.footer').height() + 40);
+            $(".pwd-eye").click(function () {
+                var input = $(this).prev("input");
+                if ($(this).hasClass("zw-icon-pwdshow")) {
+                    $(this).removeClass("zw-icon-pwdshow").addClass("zw-icon-pwdhide");
+                    input.attr("type", "password");
+                } else {
+                    $(this).removeClass("zw-icon-pwdhide").addClass("zw-icon-pwdshow");
+                    input.attr("type", "text");
+                }
+            });
+
+        });
+        $(window).resize(function () {
+            $("#wave").css('bottom', $('.footer').height() + 40);
+        })
+    });
+</script>

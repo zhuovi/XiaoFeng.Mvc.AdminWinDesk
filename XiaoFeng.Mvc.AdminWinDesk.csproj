@@ -1,0 +1,41 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <TargetFrameworks>net5.0;net6.0;</TargetFrameworks>
+	  <OutputType>Library</OutputType>
+	  <Authors>Jacky</Authors>
+	  <Product>XiaoFeng.Mvc后台UI 仿windows桌面效果</Product>
+	  <Description>后台模板</Description>
+	  <Copyright>CopyRight @ 2019-2024 魔法精灵(www.fayelf.com) QQ:7092734 Email:jacky@fayelf.com</Copyright>
+	  <PackageIconUrl>http://nuget.fayelf.com/x.png</PackageIconUrl>
+	  <Company>魔法精灵</Company>
+	  <Authors>Jacky</Authors>
+	  <VersionPrefix>1.0</VersionPrefix>
+	  <VersionSuffix>0</VersionSuffix>
+	  <Version>$(VersionPrefix).$(VersionSuffix)</Version>
+	  <FileVersion>$(Version)</FileVersion>
+	  <AssemblyVersion>$(VersionPrefix)</AssemblyVersion>
+	  <ProductVersion>$(VersionPrefix)</ProductVersion>
+	  <GenerateEmbeddedFilesManifest>true</GenerateEmbeddedFilesManifest>
+	  <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+	  <IsPackable>true</IsPackable>
+	  <Deterministic>false</Deterministic>
+	  <Title>XiaoFeng.Mvc.AdminWinDesk</Title>
+	  <GenerateDocumentationFile>true</GenerateDocumentationFile>
+	  <GenerateEmbeddedFilesManifest>true</GenerateEmbeddedFilesManifest>
+	  <PackageTags>XiaoFeng;FAYELF;ORM;MVC;WindowDesktop;</PackageTags>
+	  <PackageReleaseNotes>www.fayelf.com</PackageReleaseNotes>
+	  <PackageProjectUrl>https://www.yuque.com/fayelf/xiaofeng.mvc</PackageProjectUrl>
+	  <PackageReleaseNotes></PackageReleaseNotes>
+  </PropertyGroup>
+  <ItemGroup>
+	  <EmbeddedResource Include="wwwroot\windesk\**\*.jpg" />
+	  <EmbeddedResource Include="wwwroot\windesk\**\*.png" />
+	  <EmbeddedResource Include="wwwroot\windesk\**\*.min.*" />
+  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="BuildBundlerMinifier" Version="3.2.449" Condition="$(Configuration)=='Debug'" />
+	</ItemGroup>
+	<ItemGroup>
+	  <ProjectReference Include="..\XiaoFeng.Mvc\XiaoFeng.Mvc.csproj" />
+	</ItemGroup>
+</Project>
