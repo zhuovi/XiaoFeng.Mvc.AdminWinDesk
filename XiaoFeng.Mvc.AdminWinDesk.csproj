@@ -36,6 +36,6 @@
 		<PackageReference Include="BuildBundlerMinifier" Version="3.2.449" Condition="$(Configuration)=='Debug'" />
 	</ItemGroup>
 	<ItemGroup>
-	  <ProjectReference Include="..\XiaoFeng.Mvc\XiaoFeng.Mvc.csproj" />
+	  <PackageReference Include="XiaoFeng.Mvc" Version="3.0.5" />
 	</ItemGroup>
 </Project>
