@@ -114,6 +114,11 @@ await ApplicationManager.Load(args).RunAsync(() => WebHost.CreateHost(args, serv
 11.修改密码
 ![image](https://user-images.githubusercontent.com/40175292/217199117-521f8ec4-21aa-4403-8dbb-a8d9ea28ee58.png)
 
+12.权限桌面
+![a5a4bbbf6b7613d7208dd682154063a](https://user-images.githubusercontent.com/40175292/217200652-89bb51fc-99bc-415b-95b4-fe7aa57eff72.png)
+
+13.win桌面
+![f6b1b0d12bdcb50bdb551e9fe750f0e](https://user-images.githubusercontent.com/40175292/217200719-4822bce1-798c-4e8b-a12c-ae810847cdd7.png)
 
 
 # 作者介绍
