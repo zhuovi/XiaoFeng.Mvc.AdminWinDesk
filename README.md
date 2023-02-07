@@ -100,7 +100,7 @@ await ApplicationManager.Load(args).RunAsync(() => WebHost.CreateHost(args, serv
 
 6.启动起来后，输入网址 http://localhost:8001/Admin
 
-7.输入帐号 admin 密码admin123456  或 账号/密码：  zhuovi / sbgogwfn
+7.输入帐号 admin 密码admin123456
 
 8.进入后台界面。
 
