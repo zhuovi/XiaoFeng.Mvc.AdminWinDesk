@@ -100,9 +100,20 @@ await ApplicationManager.Load(args).RunAsync(() => WebHost.CreateHost(args, serv
 
 6.启动起来后，输入网址 http://localhost:8001/Admin
 
-7.输入帐号 admin 密码admin123456
+7.输入帐号 admin 密码admin123456  或 账号/密码：  zhuovi / sbgogwfn
 
 8.进入后台界面。
+![image](https://user-images.githubusercontent.com/40175292/217198431-d4dad50b-eee6-43f3-8b67-27fd0cfaea6d.png)
+
+9.首界面
+![image](https://user-images.githubusercontent.com/40175292/217198615-7e4ac224-3c7c-4239-8016-af2af3006384.png)
+
+10.编辑界面
+![image](https://user-images.githubusercontent.com/40175292/217198894-5c66aca3-06f3-4461-a519-6ebe8419fe1f.png)
+
+11.修改密码
+![image](https://user-images.githubusercontent.com/40175292/217199117-521f8ec4-21aa-4403-8dbb-a8d9ea28ee58.png)
+
 
 
 # 作者介绍
