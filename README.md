@@ -76,7 +76,7 @@ Cake
 
 1.通过 Microsoft Visual Studio Enterprise 2022 新建空项目
 
-2.从Nuget上搜索 XiaoFeng.Mvc.AdminWinDesk,然后安装
+2.从Nuget上搜索 XiaoFeng.Mvc.AdminWinDesk,然后安装 System.Data.SQLite 这是默认的SQLite驱动
 
 3.把项目下的 appsetting.json文件删除
 
@@ -87,20 +87,20 @@ using XiaoFeng.Mvc.AdminWinDesk;
 await ApplicationManager.Load(args).RunAsync(() => WebHost.CreateHost(args, services =>
 {
 #if DEBUG
-	services.AddControllersWithViews().AddRazorRuntimeCompilation();
+	//services.AddControllersWithViews().AddRazorRuntimeCompilation();
 #endif
 }, app =>
 {
     //启用 windows desk 皮肤
 	app.UseAdminWinDesk(app.Environment);
 
-}，init:true));
+},init:true));
 ```
 5.启动项目
 
 6.启动起来后，输入网址 http://localhost:8001/Admin
 
-7.输入帐号 admin 密码admin123456
+7.输入帐号 admin 密码admin123456  或 账号/密码：  zhuovi / sbgogwfn
 
 8.进入后台界面。
 
