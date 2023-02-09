@@ -10,7 +10,7 @@
 	  <Company>魔法精灵</Company>
 	  <Authors>Jacky</Authors>
 	  <VersionPrefix>1.0</VersionPrefix>
-	  <VersionSuffix>0</VersionSuffix>
+	  <VersionSuffix>1</VersionSuffix>
 	  <Version>$(VersionPrefix).$(VersionSuffix)</Version>
 	  <FileVersion>$(Version)</FileVersion>
 	  <AssemblyVersion>$(VersionPrefix)</AssemblyVersion>
@@ -25,7 +25,7 @@
 	  <PackageTags>XiaoFeng;FAYELF;ORM;MVC;WindowDesktop;</PackageTags>
 	  <PackageReleaseNotes>www.fayelf.com</PackageReleaseNotes>
 	  <PackageProjectUrl>https://www.yuque.com/fayelf/xiaofeng.mvc</PackageProjectUrl>
-	  <PackageReleaseNotes></PackageReleaseNotes>
+	  <PackageReleaseNotes>增加皮肤配置;修复发布时资源冲突bug;</PackageReleaseNotes>
   </PropertyGroup>
   <ItemGroup>
 	  <EmbeddedResource Include="wwwroot\windesk\**\*.jpg" />
@@ -33,9 +33,20 @@
 	  <EmbeddedResource Include="wwwroot\windesk\**\*.min.*" />
   </ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="BuildBundlerMinifier" Version="3.2.449" Condition="$(Configuration)=='Debug'" />
+	  
+	  <Content Remove="Areas\Admin\_ViewImports.cshtml" />
+	  
+	  <Content Remove="Areas\Admin\_ViewStart.cshtml" />
+	  
+	  <Content Remove="bundleconfig.json" />
 	</ItemGroup>
+	<ItemGroup Condition="$(Configuration)=='Debug'">
+		<PackageReference Include="BuildBundlerMinifier" Version="3.2.449" />
+		<!--<Compile Remove="Areas\Admin\_ViewImports.cshtml" />
+		<Compile Remove="Areas\Admin\_ViewStart.cshtml" />-->
+	</ItemGroup>
+	
 	<ItemGroup>
-	  <PackageReference Include="XiaoFeng.Mvc" Version="3.0.5" />
+	  <ProjectReference Include="..\XiaoFeng.Mvc\XiaoFeng.Mvc.csproj" />
 	</ItemGroup>
 </Project>

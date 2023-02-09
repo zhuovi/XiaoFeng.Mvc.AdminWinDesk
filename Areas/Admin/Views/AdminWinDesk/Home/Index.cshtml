@@ -1,0 +1,284 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using Microsoft.Extensions.Configuration;
+@using XiaoFeng;
+@using XiaoFeng.Config;
+@using XiaoFeng.IO;
+@using XiaoFeng.Json;
+@using XiaoFeng.Model;
+@using XiaoFeng.Mvc;
+@using XiaoFeng.Mvc.Config;
+@using XiaoFeng.Mvc.Model;
+@using XiaoFeng.Mvc.Model.Config;
+@using XiaoFeng.Mvc.Model.Admin;
+@using XiaoFeng.Mvc.Web;
+@using XiaoFeng.Xml;
+@inject IConfiguration config
+@model List<MenuData>
+@{
+	ViewBag.Title = Translations.Get("admin:fayelfadmin");
+	var PageData = new PageData(ViewData);
+	var admin = AdminUser.Current;
+	var AdminHome = config.GetConfig("Settings:AdminHome");
+	if (AdminHome.IsNullOrEmpty()) AdminHome = "Home/Home";
+
+	/*桌面图标*/
+
+	var lista = VIEWDesktopModel.Create.Where(a => a.Pass == true).OrderBy(a => a.SortID).ToList();
+	var DeskIcons = new List<dynamic>();
+
+	lista.Each(a =>
+	{
+		DeskIcons.Add(new
+		{
+			id = a.ID,
+			name = a.Name,
+			url = a.Url,
+			image = a.ImageUrl,
+			icon = a.Icon,
+			@class = a.Class,
+			style = a.Style,
+			type = 0,//0 图标 1分组
+			width = a.Width,
+			height = a.Height,
+			@lock = a.Lock.Value ? 1 : 0
+		});
+	});
+	/*
+	* 开始菜单
+	*/
+	var SubMenus = new List<dynamic>();
+	Model.Each(m =>
+	{
+		var subMenus = new List<dynamic>();
+		if (m.ChildCount > 0)
+		{
+			m.Data.Each(s =>
+			{
+				subMenus.Add(new
+				{
+					name = s.Name,
+					url = s.Url,
+					type = 0,
+					icon = s.Icon
+				});
+			});
+		}
+		SubMenus.Add(new
+		{
+			name = m.Name,
+			url = m.Url,
+			type = 0,
+			icon = m.Icon,
+			children = subMenus
+		});
+	});
+}
+<link href="/css/fayelf.min.css" type="text/css" rel="stylesheet" />
+<link href="/windesk/css/alerter.min.css" rel="stylesheet" type="text/css" />
+<link href="/windesk/css/windesk.min.css" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="/windesk/scripts/alerter.min.js"></script>
+<script type="text/javascript" src="/windesk/scripts/windesk.min.js"></script>
+<div class="windesk"></div>
+<script type="text/javascript">
+	layui.use(['jquery', 'form', 'windesk', 'layer'], function () {
+		var $ = layui.$
+			, form = layui.form
+			, windesk = layui.windesk
+			, layer = layui.layer;
+		var logout = function () {
+			layer.confirm("您确定要退出当前系统吗?", { icon: 0, title: '询问' }, function () {
+				$.ajax({
+					url: '/' + AdminAreaName + '/Login/LogOut',
+					type: 'post',
+					success: function (e) {
+						if (e.status == 'success') {
+							//window.parent.location.href = '/' + AdminAreaName+'/Login';
+							window.parent.location.href = "/Admin/Login";
+						} else {
+							layer.alert("服务器出错.", { icon: 2 });
+						}
+					}
+				});
+			});
+		};
+
+		windesk.render({
+			elem: '.windesk',
+			iconalign: 1,//横排还是坚排 0 是横排 1是竖排
+			debug: false,
+			dragicon: true,
+			deskicon: @Html.Raw(DeskIcons.ToJson()),
+			contextmenu: [{
+				name: '桌面设置',
+				icon: 'zw-icon zw-icon-set',
+				event: function (o, event, desk) {
+					desk.Open('桌面设置', '桌面设置', 600, 400, 'zw-icon zw-icon-set3', 1);
+				}
+			},
+			{
+				name: '',
+				icon: '',
+				event: null,
+				condition: null
+			},
+			{
+				name: '关于我们',
+				icon: 'zw-icon zw-icon-about',
+				event: function (o, event, desk) {
+					desk.Open('关于我们', '<table cellpadding="1" cellspacing="1" width="100%" class="fay-table about">\
+				<tbody>\
+							<tr><th width="80">版本</th><td>DeskTop v1.0</td></tr>\
+					<tr><th>作者</th><td>Jacky</td></tr>\
+						<tr><th>Email</th><td>Jacky@fayelf.com</td></tr>\
+					<tr><th>QQ</th><td>7092734</td></tr>\
+							<tr><th>网址</th><td>http://www.fayelf.com</td></tr>\
+							<tr><th>版权</th><td>Copyright © (2018 - 2024) FAYELF All Rights Reserved.</td></tr>\
+				</tbody>\
+			</table>', 0, 0, 'zw-icon zw-icon-set3', 1);
+				}
+			},
+			{
+				name: '退出系统',
+				icon: 'zw-icon zw-icon-logout2',
+				event: function () {
+					logout();
+				}
+			}],
+			startmenu: {
+				sidebar: [{
+					name: 'empty',
+					url: '',
+					type: 0,
+					icon: ''
+				},
+				{
+					name: '帐户',
+					url: '/' + AdminAreaName + '/AdminUser/Profile?iframe=1',
+					type: 0,
+					icon: 'zw-icon zw-icon-user',
+				},
+				{
+					name: '修改密码',
+					url: '/' + AdminAreaName + '/AdminUser/ModifyPwd?iframe=1',
+					type: 0,
+					icon: 'zw-icon zw-icon-key',
+				},
+				{
+					name: '清除缓存',
+					url: '',
+					type: 0,
+					icon: 'zw-icon zw-icon-clear',
+					event: function () {
+						layer.confirm("您确定要清除当前系统缓存吗?", { icon: 0, title: '询问' }, function () {
+							$.ajax({
+								type: 'post',
+								url: '/' + AdminAreaName + '/Home/ClearCache', success: function (e) {
+									layer.alert('清除缓存成功.', { icon: 1 }, function (index) {
+										layer.close(index);
+									});
+								}
+							});
+						});
+					}
+				},
+				{
+					name: '重启站点',
+					url: '',
+					type: 0,
+					icon: 'zw-icon zw-icon-refresh',
+					event: function () {
+						layer.confirm("您确定要重启当前系统吗?", { icon: 0, title: '询问' }, function () {
+							$.ajax({
+								type: 'post',
+								url: '/' + AdminAreaName + '/Home/Restart', success: function (e) {
+									layer.alert('重启站点成功.', { icon: 1 }, function (index) {
+										layer.close(index);
+									});
+								}
+							});
+						});
+					}
+				},
+				{
+					name: '设置',
+					url: '/' + AdminAreaName + '/ProgramSet',
+					type: 0,
+					icon: 'zw-icon zw-icon-set'
+				},
+				{
+					name: '退出',
+					url: '',
+					type: 0,
+					icon: 'zw-icon zw-icon-logout2',
+					event: logout
+				}],
+				submenu: @Html.Raw(SubMenus.ToJson())
+					},
+			event: {
+				desktop: {
+					added: function (o, data, desk) {
+						$.ajax({
+							type: 'post',
+							data: "Name=" + data.name + "&Icon=" + data.icon + "&Type=1&Url=" + data.url,
+							url: '/' + AdminAreaName + '/Desktop/Add',
+							success: function (e) {
+								if (e.status == 'success') {
+									layer.msg('添加快捷图标成功.');
+								} else {
+									layer.msg('添加快捷图标失败');
+									desk.RemoveDesktopIcon(0);
+								}
+							},
+							error: function () {
+								layer.msg('添加快捷图标失败');
+								desk.RemoveDesktopIcon(0);
+							}
+						});
+					},
+					moved: function (li) {
+						var data = [];
+						$(li).each(function (i) {
+							var id = $(this).attr("data-id") || '';
+							if (id == '' || id == 0) return;
+							data.push({
+								id: id, sort: i
+							});
+						});
+						if (data.length == 0) return;
+						$.ajax({
+							method: 'post',
+							contentType: 'application/json',
+							data: JSON.stringify(data),
+							url: '/' + AdminAreaName + '/Desktop/SetSort',
+							success: function (e) {
+
+							},
+							error: function () {
+
+							}
+						});
+					},
+					removed: function (id) {
+						id = id || '';
+						if (id == 0 || id == '') return;
+						$.ajax({
+							type: 'post',
+							data: { ID: id },
+							url: '/' + AdminAreaName + '/Desktop/Delete',
+							success: function (e) {
+								if (e.status == 'success') {
+									layer.msg('删除快捷图标成功.');
+								} else {
+									layer.msg('删除快捷图标失败');
+								}
+							},
+							error: function () {
+								layer.msg('删除快捷图标失败');
+							}
+						});
+					}
+				}
+			}
+		});
+	});
+</script>
