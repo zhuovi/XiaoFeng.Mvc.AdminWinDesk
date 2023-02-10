@@ -47,10 +47,7 @@ namespace XiaoFeng.Mvc.AdminWinDesk
                 options.FileProvider = provider;
             options.HttpsCompression = Microsoft.AspNetCore.Http.Features.HttpsCompressionMode.Compress;
             app.UseStaticFiles(options);
-            System.Collections.Concurrent.ConcurrentBag<XiaoFeng.Net.IServerSession> list;
-            var server = new XiaoFeng.Net.NetServer<XiaoFeng.Net.ServerSession>();
-            var lsit = server.ConnectionSocketList;
-            server.RemoveQueue
+
            var theme = app.ApplicationServices.GetService<IThemeService>();
             theme.Add("AdminWinDesk", "后台windows桌面皮肤", "仿windows桌面皮肤", Assembly.GetExecutingAssembly());
 			/*
