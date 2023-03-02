@@ -195,7 +195,7 @@
             var width = options.area[0] == 0 ? 'auto' : (options.area[0] + 'px');
             var height = options.area[1] == 0 ? 'auto' : (options.area[1] + 'px');
 
-            var dl = $('<dl id="alerter' + zindex + '" class="alerter' + (options.skin == '' ? '' : (' ' + options.skin)) + (options.anim >= 0 && options.anim <= 6 ? (' alerter-anim ' + anims[options.anim]) : '') + '" style="z-index:' + zindex + ';left:' + left + 'px;top:' + top + 'px;width:' + width + ';height:' + height + ';' + (options.fixed ? 'position:fixed; ' : '') + '" data-time="' + options.time + '" data-type="' + options.type + '" data-anim="' + options.anim + '" data-index="' + zindex + '"></dl>');
+            var dl = $('<dl id="alerter' + zindex + '" class="alerter layui-layer ' + (options.skin == '' ? '' : (' ' + options.skin)) + (options.anim >= 0 && options.anim <= 6 ? (' alerter-anim ' + anims[options.anim]) : '') + '" style="z-index:' + zindex + ';left:' + left + 'px;top:' + top + 'px;width:' + width + ';height:' + height + ';' + (options.fixed ? 'position:fixed; ' : '') + '" data-time="' + options.time + '" data-type="' + options.type + '" data-anim="' + options.anim + '" data-index="' + zindex + '"></dl>');
             $(document.body).append(dl);
             
             if (options.title != '' && !(typeof (options.title) == 'boolean' && options.title == false)) {
@@ -485,6 +485,6 @@
         }
         this.init();
     }
-    
+    window.Alerter = alerter;
     exports("alerter", alerter);
 });

@@ -49,7 +49,9 @@
                                 url: "",
                                 icon: "",
                                 class: "",
-                                style: ""
+                                style: "",
+                                width: 0,//窗口宽
+                                height: 0,//窗口高
                             }
                         ]
                     }
@@ -560,7 +562,7 @@
         //展示开始菜单
         this.ShowStartMenu = function () {
             taskbar.find(".main-menu").addClass("active");
-            startmenu.animate({width:400,height:500},50);
+            startmenu.animate({ width: 400, height: 500 }, 50);
         }
         //隐藏开始菜单
         this.HideStartMenu = function () {
@@ -576,7 +578,7 @@
                 if (s.name == 'empty')
                     sidebar.append('<div class="emptybutton"></div>');
                 else {
-                    var btn = $('<button class="' + s.icon + '" title="' + s.name + '" data-url="' + s.url + '" data-name="' + s.name + '"></button>');
+                    var btn = $('<button class="' + s.icon + '" title="' + s.name + '" data-url="' + s.url + '" data-name="' + s.name + '" data-width="' + (s.width || '') + '" data-height="' + (s.height || '') +'"></button>');
                     if (typeof s.event == 'function')
                         btn.on("click", s.event);
                     sidebar.append(btn);
@@ -585,8 +587,10 @@
             $(document).on("click", ".sidebar button", function () {
                 var url = $(this).attr("data-url") || '';
                 var name = $(this).attr('data-name');
+                var width = $(this).attr("data-width") || '';
+                var height = $(this).attr("data-height") || '';
                 if (url == '') return;
-                self.Open(name, url, 600, 400,$(this).attr('class'));
+                self.Open(name, url, width == '' ? 800 : width, height == '' ? 700 : height, $(this).attr('class'));
                 self.HideStartMenu();
             });
         }
@@ -603,7 +607,7 @@
                 dl.append(dd);
                 if (m.hasOwnProperty("children") && m.children.length > 0) {
                     m.children.forEach(function (ms) {
-                        dd.append($('<a href="javascript:void(0);" data-url="' + ms.url + '" data-name="' + ms.name + '" data-icon="'+ ms.icon +'"><i class="' + ms.icon + '"></i>' + ms.name + '</a>'));
+                        dd.append($('<a href="javascript:void(0);" data-url="' + ms.url + '" data-name="' + ms.name + '" data-icon="' + ms.icon + '" data-width="' + (ms.width || '') + '" data-height="' + (ms.height || '') +'"><i class="' + ms.icon + '"></i>' + ms.name + '</a>'));
                     });
                 }
             });
@@ -628,8 +632,10 @@
             $(document).on("click", ".submenu a", function () {
                 var url = $(this).attr("data-url") || '';
                 var name = $(this).attr('data-name');
+                var width = $(this).attr("data-width") || '';
+                var height = $(this).attr("data-height") || '';
                 if (url == '') return;
-                self.Open(name, url, 1200, 800, $(this).find("i").attr('class'));
+                self.Open(name, url, width == '' ? 1200 : width, height == '' ? 800 : height, $(this).find("i").attr('class'));
                 self.HideStartMenu();
             });
         }

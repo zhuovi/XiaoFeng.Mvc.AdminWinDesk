@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
-    <TargetFrameworks>net5.0;net6.0;</TargetFrameworks>
+    <TargetFrameworks>net5.0;net6.0;net7.0;</TargetFrameworks>
 	  <OutputType>Library</OutputType>
 	  <Authors>Jacky</Authors>
 	  <Product>XiaoFeng.Mvc后台UI 仿windows桌面效果</Product>
@@ -25,7 +25,7 @@
 	  <PackageTags>XiaoFeng;FAYELF;ORM;MVC;WindowDesktop;</PackageTags>
 	  <PackageReleaseNotes>www.fayelf.com</PackageReleaseNotes>
 	  <PackageProjectUrl>https://www.yuque.com/fayelf/xiaofeng.mvc</PackageProjectUrl>
-	  <PackageReleaseNotes>增加皮肤配置;修复发布时资源冲突bug;</PackageReleaseNotes>
+	  <PackageReleaseNotes>增加皮肤配置;修复发布时资源冲突bug;优化窗口大小;</PackageReleaseNotes>
   </PropertyGroup>
   <ItemGroup>
 	  <EmbeddedResource Include="wwwroot\windesk\**\*.jpg" />
@@ -33,11 +33,8 @@
 	  <EmbeddedResource Include="wwwroot\windesk\**\*.min.*" />
   </ItemGroup>
 	<ItemGroup>
-	  
 	  <Content Remove="Areas\Admin\_ViewImports.cshtml" />
-	  
 	  <Content Remove="Areas\Admin\_ViewStart.cshtml" />
-	  
 	  <Content Remove="bundleconfig.json" />
 	</ItemGroup>
 	<ItemGroup Condition="$(Configuration)=='Debug'">
