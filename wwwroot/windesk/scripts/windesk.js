@@ -635,7 +635,7 @@
                 var width = $(this).attr("data-width") || '';
                 var height = $(this).attr("data-height") || '';
                 if (url == '') return;
-                self.Open(name, url, width == '' ? 1200 : width, height == '' ? 800 : height, $(this).find("i").attr('class'));
+                self.Open(name, url, width == '' ? 1200 : width, height == '' ? 700 : height, $(this).find("i").attr('class'));
                 self.HideStartMenu();
             });
         }
