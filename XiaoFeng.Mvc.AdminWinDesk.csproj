@@ -1,49 +1,55 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
-  <PropertyGroup>
-    <TargetFrameworks>net5.0;net6.0;net7.0;</TargetFrameworks>
-	  <OutputType>Library</OutputType>
-	  <Authors>Jacky</Authors>
-	  <Product>XiaoFeng.Mvc后台UI 仿windows桌面效果</Product>
-	  <Description>后台模板</Description>
-	  <Copyright>CopyRight @ 2019-2024 魔法精灵(www.fayelf.com) QQ:7092734 Email:jacky@fayelf.com</Copyright>
-	  <PackageIconUrl>http://nuget.fayelf.com/x.png</PackageIconUrl>
-	  <Company>魔法精灵</Company>
-	  <Authors>Jacky</Authors>
-	  <VersionPrefix>1.0</VersionPrefix>
-	  <VersionSuffix>1</VersionSuffix>
-	  <Version>$(VersionPrefix).$(VersionSuffix)</Version>
-	  <FileVersion>$(Version)</FileVersion>
-	  <AssemblyVersion>$(VersionPrefix)</AssemblyVersion>
-	  <ProductVersion>$(VersionPrefix)</ProductVersion>
-	  <GenerateEmbeddedFilesManifest>true</GenerateEmbeddedFilesManifest>
-	  <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-	  <IsPackable>true</IsPackable>
-	  <Deterministic>false</Deterministic>
-	  <Title>XiaoFeng.Mvc.AdminWinDesk</Title>
-	  <GenerateDocumentationFile>true</GenerateDocumentationFile>
-	  <GenerateEmbeddedFilesManifest>true</GenerateEmbeddedFilesManifest>
-	  <PackageTags>XiaoFeng;FAYELF;ORM;MVC;WindowDesktop;</PackageTags>
-	  <PackageReleaseNotes>www.fayelf.com</PackageReleaseNotes>
-	  <PackageProjectUrl>https://www.yuque.com/fayelf/xiaofeng.mvc</PackageProjectUrl>
-	  <PackageReleaseNotes>增加皮肤配置;修复发布时资源冲突bug;优化窗口大小;</PackageReleaseNotes>
-  </PropertyGroup>
-  <ItemGroup>
-	  <EmbeddedResource Include="wwwroot\windesk\**\*.jpg" />
-	  <EmbeddedResource Include="wwwroot\windesk\**\*.png" />
-	  <EmbeddedResource Include="wwwroot\windesk\**\*.min.*" />
-  </ItemGroup>
+	<PropertyGroup>
+		<TargetFrameworks>net5.0;net6.0;net7.0;</TargetFrameworks>
+		<OutputType>Library</OutputType>
+		<Authors>Jacky</Authors>
+		<Product>XiaoFeng.Mvc后台UI 仿windows桌面效果</Product>
+		<Description>后台模板</Description>
+		<Copyright>CopyRight @ 2019-2024 魔法精灵(www.fayelf.com) QQ:7092734 Email:jacky@fayelf.com</Copyright>
+		<Company>魔法精灵</Company>
+		<Authors>Jacky</Authors>
+		<VersionPrefix>1.0</VersionPrefix>
+		<VersionSuffix>2</VersionSuffix>
+		<Version>$(VersionPrefix).$(VersionSuffix)</Version>
+		<FileVersion>$(Version)</FileVersion>
+		<AssemblyVersion>$(VersionPrefix)</AssemblyVersion>
+		<ProductVersion>$(VersionPrefix)</ProductVersion>
+		<GenerateEmbeddedFilesManifest>true</GenerateEmbeddedFilesManifest>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+		<IsPackable>true</IsPackable>
+		<Deterministic>false</Deterministic>
+		<Title>XiaoFeng.Mvc.AdminWinDesk</Title>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<GenerateEmbeddedFilesManifest>true</GenerateEmbeddedFilesManifest>
+		<RepositoryUrl>https://github.com/zhuovi/XiaoFeng.Mvc.AdminWinDesk</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<PackageTags>XiaoFeng;FAYELF;ORM;MVC;WindowDesktop;</PackageTags>
+		<PackageProjectUrl>https://www.eelf.cn</PackageProjectUrl>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageReleaseNotes>增加皮肤配置;修复发布时资源冲突bug;优化窗口大小;</PackageReleaseNotes>
+		<PackageIconUrl>http://nuget.fayelf.com/x.png</PackageIconUrl>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+	</PropertyGroup>
 	<ItemGroup>
-	  <Content Remove="Areas\Admin\_ViewImports.cshtml" />
-	  <Content Remove="Areas\Admin\_ViewStart.cshtml" />
-	  <Content Remove="bundleconfig.json" />
+		<None Include="README.md" Pack="true" PackagePath="\"/>
+	</ItemGroup>
+	<ItemGroup>
+		<EmbeddedResource Include="wwwroot\windesk\**\*.jpg" />
+		<EmbeddedResource Include="wwwroot\windesk\**\*.png" />
+		<EmbeddedResource Include="wwwroot\windesk\**\*.min.*" />
+	</ItemGroup>
+	<ItemGroup>
+		<Content Remove="Areas\Admin\_ViewImports.cshtml" />
+		<Content Remove="Areas\Admin\_ViewStart.cshtml" />
+		<Content Remove="bundleconfig.json" />
 	</ItemGroup>
 	<ItemGroup Condition="$(Configuration)=='Debug'">
 		<PackageReference Include="BuildBundlerMinifier" Version="3.2.449" />
 		<!--<Compile Remove="Areas\Admin\_ViewImports.cshtml" />
 		<Compile Remove="Areas\Admin\_ViewStart.cshtml" />-->
 	</ItemGroup>
-	
+
 	<ItemGroup>
-	  <ProjectReference Include="..\XiaoFeng.Mvc\XiaoFeng.Mvc.csproj" />
+		<ProjectReference Include="..\XiaoFeng.Mvc\XiaoFeng.Mvc.csproj" />
 	</ItemGroup>
 </Project>

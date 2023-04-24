@@ -16,54 +16,56 @@ Nuget：XiaoFeng.Mvc.AdminWinDesk
 
 源码： https://github.com/zhuovi/XiaoFeng.Mvc.AdminWinDesk
 
-教程： https://www.yuque.com/fayelf/xiaofeng.mvc
+教程： https://www.eelf.cn
 
  模仿windows桌面后台皮肤
 
 ## XiaoFeng
-
 XiaoFeng generator with [XiaoFeng](https://github.com/zhuovi/XiaoFeng).
+
+## XiaoFeng.Mvc.AdminWinDesk
+XiaoFeng.Mvc.AdminWinDesk generator with [XiaoFeng.Mvc.AdminWinDesk](https://github.com/zhuovi/XiaoFeng.Mvc.AdminWinDesk).
 
 ## Install
 
 .NET CLI
 
 ```
-$ dotnet add package XiaoFeng.Mvc.AdminWinDesk --version 1.0.1
+$ dotnet add package XiaoFeng.Mvc.AdminWinDesk --version 1.0.2
 ```
 
 Package Manager
 
 ```
-PM> Install-Package XiaoFeng.Mvc.AdminWinDesk -Version 1.0.1
+PM> Install-Package XiaoFeng.Mvc.AdminWinDesk -Version 1.0.2
 ```
 
 PackageReference
 
 ```
-<PackageReference Include="XiaoFeng.Mvc.AdminWinDesk" Version="1.0.1" />
+<PackageReference Include="XiaoFeng.Mvc.AdminWinDesk" Version="1.0.2" />
 ```
 
 Paket CLI
 
 ```
-> paket add XiaoFeng.Mvc.AdminWinDesk --version 1.0.1
+> paket add XiaoFeng.Mvc.AdminWinDesk --version 1.0.2
 ```
 
 Script & Interactive
 
 ```
-> #r "nuget: XiaoFeng.Mvc.AdminWinDesk, 1.0.1"
+> #r "nuget: XiaoFeng.Mvc.AdminWinDesk, 1.0.2"
 ```
 
 Cake
 
 ```
 // Install XiaoFeng.Mvc.AdminWinDesk as a Cake Addin
-#addin nuget:?package=XiaoFeng.Mvc.AdminWinDesk&version=1.0.1
+#addin nuget:?package=XiaoFeng.Mvc.AdminWinDesk&version=1.0.2
 
 // Install XiaoFeng.Mvc.AdminWinDesk as a Cake Tool
-#tool nuget:?package=XiaoFeng.Mvc.AdminWinDesk&version=1.0.1
+#tool nuget:?package=XiaoFeng.Mvc.AdminWinDesk&version=1.0.2
 ```
 
 # XiaoFeng 类库包含库
