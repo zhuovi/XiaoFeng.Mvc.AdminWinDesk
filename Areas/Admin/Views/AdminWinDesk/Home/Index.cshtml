@@ -26,13 +26,15 @@
 	var lista = VIEWDesktopModel.Create.Where(a => a.Pass == true).OrderBy(a => a.SortID).ToList();
 	var DeskIcons = new List<dynamic>();
 
+	var ProgramSet = ProgramSetting.Current;
+
 	lista.Each(a =>
 	{
 		DeskIcons.Add(new
 		{
 			id = a.ID,
 			name = a.Name,
-			url = a.Url,
+			url = a.Url.ReplacePattern(@"\/Admin\/", @"/" + ProgramSet.AdminAreaName + @"/"),
 			image = a.ImageUrl,
 			icon = a.Icon,
 			@class = a.Class,
