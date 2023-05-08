@@ -37,51 +37,52 @@
     <script type="text/javascript" src="/Plugin/Encrypt/aes-min.js"></script>
 </environment>
 <link href="/windesk/css/login.min.css" type="text/css" rel="stylesheet" />
-<div class="windesk">
-    <div class="main layui-form anim">
-        <dl>
-            <dt>
-                <h2>登录入口</h2>
-                <h3>FAYELF v @config.GetConfig("Version:admin","1.0")</h3>
-            </dt>
-            <dd>
-                <input type="text" name="username" lay-verify="required" placeholder="@Translations.Get("admin:account","帐号")" class="layui-input" lay-reqText="@Translations.Get("admin:enteraccount", "请输入帐号.")" />
-            </dd>
-            <dd style="position:relative;">
-                <input type="password" name="password" id="password" lay-verify="required" placeholder="@Translations.Get("admin:password","密码")" lay-reqText="@Translations.Get("admin:enterconfirmpwd", "请输入密码.")" />
-                <div class="zw-icon zw-icon-pwdhide pwd-eye"></div>
-            </dd>
-            <dd class="code">
-                @if ((XiaoFeng.Mvc.CaptchaType.ClickArrow | XiaoFeng.Mvc.CaptchaType.ClickPicture).HasFlag(setting.AdminLoginCaptcha))
-                {
-                    <input type="hidden" id="user-login-vercode" name="code" lay-verify="required" lay-reqText="@Translations.Get("admin:clickverify", "请完成安全验证.")">
-                }
-                else{
-                    <div><input type="text" name="code" id="code" lay-verify="required" maxlength="5" placeholder="@Translations.Get("admin:checkcode","校验码")" lay-reqText="@Translations.Get("admin:entercheckcode", "请输入验证码.")" /></div>
-                    <img src="/ValidateCode?N=5" id="imgcode" title="@Translations.Get("admin:checkcodeclickanother","看不清?点击换一个!")" />
-                }
-            </dd>
-            <dd>
-                <input type="button" name="login" id="login" lay-submit lay-filter="user-login-submit" value="@Translations.Get("admin:signin", "登 入")" />
-            </dd>
-        </dl>
+<div class="windesk"></div>
+<div class="main layui-form anim">
+    <dl>
+        <dt>
+            <h2>登录入口</h2>
+            <h3>FAYELF v @config.GetConfig("Version:admin","1.0")</h3>
+        </dt>
+        <dd>
+            <input type="text" name="username" lay-verify="required" placeholder="@Translations.Get("admin:account","帐号")" class="layui-input" lay-reqText="@Translations.Get("admin:enteraccount", "请输入帐号.")" />
+        </dd>
+        <dd style="position:relative;">
+            <input type="password" name="password" id="password" lay-verify="required" placeholder="@Translations.Get("admin:password","密码")" lay-reqText="@Translations.Get("admin:enterconfirmpwd", "请输入密码.")" />
+            <div class="zw-icon zw-icon-pwdhide pwd-eye"></div>
+        </dd>
+        <dd class="code">
+            @if ((XiaoFeng.Mvc.CaptchaType.ClickArrow | XiaoFeng.Mvc.CaptchaType.ClickPicture).HasFlag(setting.AdminLoginCaptcha))
+            {
+                <input type="hidden" id="user-login-vercode" name="code" lay-verify="required" lay-reqText="@Translations.Get("admin:clickverify", "请完成安全验证.")">
+            }
+            else{
+                <div><input type="text" name="code" id="code" lay-verify="required" maxlength="5" placeholder="@Translations.Get("admin:checkcode","校验码")" lay-reqText="@Translations.Get("admin:entercheckcode", "请输入验证码.")" /></div>
+                <img src="/ValidateCode?N=5" id="imgcode" title="@Translations.Get("admin:checkcodeclickanother","看不清?点击换一个!")" />
+            }
+        </dd>
+        <dd>
+            <input type="button" name="login" id="login" lay-submit lay-filter="user-login-submit" value="@Translations.Get("admin:signin", "登 入")" />
+        </dd>
+    </dl>
+</div>
+<div class="footers">
+    <div id="wave">
+        <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+            <defs>
+                <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"></path>
+            </defs>
+            <g class="parallax">
+                <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(255,255,255,0.5"></use>
+                <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.4)"></use>
+                <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.2)"></use>
+                <use xlink:href="#gentle-wave" x="48" y="7" fill="rgba(255,255,255,1)"></use>
+            </g>
+        </svg>
     </div>
-</div>
-<div style="position:absolute;width:100%;bottom:70px;z-index:1;" id="wave">
-    <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
-        <defs>
-            <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"></path>
-        </defs>
-        <g class="parallax">
-            <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(255,255,255,0.5"></use>
-            <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.4)"></use>
-            <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.2)"></use>
-            <use xlink:href="#gentle-wave" x="48" y="7" fill="rgba(255,255,255,1)"></use>
-        </g>
-    </svg>
-</div>
-<div class="footer">
-    @Html.Raw(config.GetConfig("copyright:description"))
+    <div class="footer">
+        @Html.Raw(config.GetConfig("copyright:description"))
+    </div>
 </div>
 <script type="text/javascript">
     layui.use(['form', 'layer' @Html.Raw(clickcaptcha==""?"":(",'"+clickcaptcha+"'"))], function () {
@@ -166,10 +167,6 @@
                 }
             });
         });
-        var height = $(window).height();
-        var top = (height - 400) / 2 - 50;
-        if (top < 0) top = 0;
-        $(".main").css("padding-top", top);
         $(document).keydown(function (e) {
             if (e.keyCode == 13)
                 $("#login").trigger("click");
@@ -181,7 +178,6 @@
         });
         $(function () {
             $(".anim").addClass("anims");
-            $("#wave").css('bottom', $('.footer').height() + 40);
             $(".pwd-eye").click(function () {
                 var input = $(this).prev("input");
                 if ($(this).hasClass("zw-icon-pwdshow")) {
@@ -194,8 +190,5 @@
             });
 
         });
-        $(window).resize(function () {
-            $("#wave").css('bottom', $('.footer').height() + 40);
-        })
     });
 </script>

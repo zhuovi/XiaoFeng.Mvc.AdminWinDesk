@@ -23,12 +23,6 @@ body {
     display: box;
     -webkit-box-orient:vertical;
 }
-.windesk * {
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
 .zw-logo-bg {
     top: 18px;
 }
@@ -45,6 +39,10 @@ body {
     scrollbar-darkshadow-color: #5e6a5c; /*图4,立体滚动条强阴影的颜色*/
     scrollbar-track-color: rgba(74, 84, 78, 0.41); /*图7,立体滚动条背景颜色*/
     scrollbar-base-color: #5e6a5c; /*滚动条的基本颜色*/
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 .windesk .desktop {
@@ -208,45 +206,25 @@ body {
     border:1px solid rgba(255,255,255,0);
     border-radius:3px;
 }
-    .windesk .desktop ul > li:hover {
-        background: rgba(255,255,255,.2);
-        border: 1px solid rgba(255,255,255,.5)
-    }
-    .windesk .desktop>ul>li>img{
-        position:relative;
-        z-index:1;
-        max-width:64px;
-        max-height:64px;
-    }
+.windesk .desktop ul > li:hover {
+    background: rgba(255,255,255,.2);
+    border: 1px solid rgba(255,255,255,.5)
+}
+.windesk .desktop>ul>li>img{
+    position:relative;
+    z-index:1;
+    max-width:64px;
+    max-height:64px;
+}
 .windesk .icon img {
     max-width: 64px;
     max-height: 64px;
 }
 .windesk .desktop > ul > li:hover > i {
-    font-size: 30px;
-    width: 52px;
-    height: 52px;
-    display: inline-block;
-    vertical-align: middle;
-    text-align: center;
     background: linear-gradient(#FF9C00 50%,#FF8400 50%);
-    color: #FFFFFF;
-    line-height: 52px;
-    border-radius: 5px;
-    margin: 6px;
 }
 .windesk .desktop > ul > li > i {
-    font-size: 30px;
-    width: 52px;
-    height: 52px;
-    display: inline-block;
-    vertical-align: middle;
-    text-align: center;
     background: linear-gradient(#9ac149 50%,#75ac02 50%);
-    color: #FFFFFF;
-    line-height: 52px;
-    border-radius: 5px;
-    margin:6px;
 }
 .windesk .desktop > ul > li > span {
     text-overflow: ellipsis;
@@ -311,18 +289,18 @@ body {
 .context-menu>ul>li>a:hover{
     background:#EFEFEF;
 }
-    .context-menu > ul > li > a > i {
-        margin-left: 3px;
-        margin-right: 3px;
-        width: 19px;
-        height: 19px;
-        line-height:19px;
-        display: inline-block;
-    }
-    table.about{
-       margin:5px !important;
-       width:calc(100% - 10px) !important;
-    }
+.context-menu > ul > li > a > i {
+    margin-left: 3px;
+    margin-right: 3px;
+    width: 19px;
+    height: 19px;
+    line-height:19px;
+    display: inline-block;
+}
+table.about{
+    margin:5px !important;
+    width:calc(100% - 10px) !important;
+}
   
 .windesk .startmenu {
     width: 0px;
@@ -337,97 +315,97 @@ body {
     overflow: hidden;
     z-index: 85100600;
 }
-    .windesk .startmenu > .sidebar {
-        width: 60px;
-        height: 100%;
-        background-color: rgba(0,0,0,.8);
-        display: -webkit-box;
-        display: -moz-box;
-        display: box;
-        -webkit-box-orient:vertical;
-    }
+.windesk .startmenu > .sidebar {
+    width: 60px;
+    height: 100%;
+    background-color: rgba(0,0,0,.8);
+    display: -webkit-box;
+    display: -moz-box;
+    display: box;
+    -webkit-box-orient:vertical;
+}
 .windesk .startmenu > .sidebar > .emptybutton {
     -webkit-box-flex: 1;
 }
-    .windesk .startmenu > .submenu {
-        -webkit-box-flex: 1;
-        background-color: rgba(0,0,0,.6);
-        overflow-y:auto;
-        overflow-x:hidden;
-    }
-    .windesk .startmenu > .sidebar > button {
-        width: 100%;
-        height: 60px;
-        border: 0px;
-        background-color: rgba(0,0,0,0);
-        color:#FFFFFF;
-        transition:1s;
-    }
-        .windesk .startmenu > .sidebar > button:hover {
-            background-color: rgba(255,255,255,.15);
-        }
-        .windesk .startmenu>.submenu>dl{
-            margin:10px;
-        }
-            .windesk .startmenu > .submenu > dl > dt {
-                height: 45px;
-                color: #FFFFFF;
-                text-overflow: ellipsis;
-                white-space: nowrap;
-                box-sizing: border-box;
-                overflow: hidden;
-                display: inline-block;
-                line-height: 45px;
-                width:100%;
-                text-indent:10px;
-            }
-                .windesk .startmenu > .submenu > dl > dt.open::after {
-                    transform: rotate(-90deg);
-                    margin-top:2px;
-                }
-            .windesk .startmenu > .submenu > dl > dt:hover{
-                background-color:rgba(255,255,255,.3);
-            }
-            .windesk .startmenu > .submenu > dl > dt > span {
+.windesk .startmenu > .submenu {
+    -webkit-box-flex: 1;
+    background-color: rgba(0,0,0,.6);
+    overflow-y:auto;
+    overflow-x:hidden;
+}
+.windesk .startmenu > .sidebar > button {
+    width: 100%;
+    height: 60px;
+    border: 0px;
+    background-color: rgba(0,0,0,0);
+    color:#FFFFFF;
+    transition:1s;
+}
+.windesk .startmenu > .sidebar > button:hover {
+    background-color: rgba(255,255,255,.15);
+}
+.windesk .startmenu>.submenu>dl{
+    margin:10px;
+}
+.windesk .startmenu > .submenu > dl > dt {
+    height: 45px;
+    color: #FFFFFF;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    box-sizing: border-box;
+    overflow: hidden;
+    display: inline-block;
+    line-height: 45px;
+    width:100%;
+    text-indent:10px;
+}
+.windesk .startmenu > .submenu > dl > dt.open::after {
+    transform: rotate(-90deg);
+    margin-top:2px;
+}
+.windesk .startmenu > .submenu > dl > dt:hover{
+    background-color:rgba(255,255,255,.3);
+}
+.windesk .startmenu > .submenu > dl > dt > span {
                 
-            }
-                .windesk .startmenu > .submenu > dl > dt::after {
-                    font-family: 'zw-icon';
-                    content: '\e127';
-                    float: right;
-                    transform: rotate(90deg);
-                    margin-top:-5px;
-                }
-            .windesk .startmenu > .submenu > dl > dd {
-                background-color: rgba(0,0,0,.5);
-                padding:0px 5px;
-                border-radius:3px;
-                overflow:hidden;
-                height:0;
-            }
-            .windesk .startmenu > .submenu > dl > dd > a {
-                width: 100%;
-                display:inline-block;
-                height:35px;
-                text-decoration:none;
-                line-height:35px;
-                color:#FFFFFF;
-            }
-            .windesk .startmenu > .submenu > dl > dd > a:hover{
-                background:rgba(0,0,0,.5);
-                border-radius:3px;
-                color:#FFFFFF;
-            }
-            .windesk .startmenu > .submenu > dl > dd > a > i {
-                margin-left:20px;
-                margin-right:5px;
-                display: inline-block;
-                width: 19px;
-                height: 19px;
-            }
-            .zw-dpn{
-                display:-webkit-box !important;
-            }
+}
+.windesk .startmenu > .submenu > dl > dt::after {
+    font-family: 'zw-icon';
+    content: '\e127';
+    float: right;
+    transform: rotate(90deg);
+    margin-top:-5px;
+}
+.windesk .startmenu > .submenu > dl > dd {
+    background-color: rgba(0,0,0,.5);
+    padding:0px 5px;
+    border-radius:3px;
+    overflow:hidden;
+    height:0;
+}
+.windesk .startmenu > .submenu > dl > dd > a {
+    width: 100%;
+    display:inline-block;
+    height:35px;
+    text-decoration:none;
+    line-height:35px;
+    color:#FFFFFF;
+}
+.windesk .startmenu > .submenu > dl > dd > a:hover{
+    background:rgba(0,0,0,.5);
+    border-radius:3px;
+    color:#FFFFFF;
+}
+.windesk .startmenu > .submenu > dl > dd > a > i {
+    margin-left:20px;
+    margin-right:5px;
+    display: inline-block;
+    width: 19px;
+    height: 19px;
+}
+.zw-dpn{
+    display:-webkit-box !important;
+}
 
 
 .html {
@@ -439,70 +417,70 @@ body {
     -webkit-box-orient: horizontal;
     position: relative;
 }
-    .html > .nav {
-        border-right: 1px solid #F0F0F0;
-        position: relative;
-    }
-        .html > .nav > ul {
-            width: 200px;
-            padding: 5px;
-        }
-    .html>.nav>ul>li{
-        height:40px;
-        line-height:40px;
-        margin-bottom:5px;
-    }
-        .html > .nav>ul > li > a {
-            display: inline-block;
-            width: 100%;
-            height: 100%;
-            border-radius: 3px;
-            color: #414b55;
-        }
-            .html > .nav>ul > li > a:hover {
-                background-color: rgba(5,127,235,0.04);
-                color: #414b55;
-            }
-        .html > .nav>ul > li > a.active {
-            background-color: rgba(5,127,235,0.1);
-        }
-        .html > .nav>ul > li > a>i{
-            margin-left:10px;
-            margin-right:10px;
-        }
-    .html > .content {
-        padding:5px;
-        -webkit-box-flex: 1;
-        overflow:auto;
-    }
-    .html > .nav > .bar {
-        width: 8px;
-        height: 30px;
-        line-height: 28px;
-        border: 1px solid #F0F0F0;
-        position: absolute;
-        right: -10px;
-        top: 50%;
-        margin-top: -15px;
-        border-right-width: 0px;
-        transform: rotate(180deg);
-        border-radius: 3px 0px 0px 3px;
-        background-image: linear-gradient(90deg,rgba(240,240,240,.5),#f0f0f0);
-        user-select: none;
-    }
+.html > .nav {
+    border-right: 1px solid #F0F0F0;
+    position: relative;
+}
+.html > .nav > ul {
+    width: 200px;
+    padding: 5px;
+}
+.html>.nav>ul>li{
+    height:40px;
+    line-height:40px;
+    margin-bottom:5px;
+}
+.html > .nav>ul > li > a {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    border-radius: 3px;
+    color: #414b55;
+}
+.html > .nav>ul > li > a:hover {
+    background-color: rgba(5,127,235,0.04);
+    color: #414b55;
+}
+.html > .nav>ul > li > a.active {
+    background-color: rgba(5,127,235,0.1);
+}
+.html > .nav>ul > li > a>i{
+    margin-left:10px;
+    margin-right:10px;
+}
+.html > .content {
+    padding:5px;
+    -webkit-box-flex: 1;
+    overflow:auto;
+}
+.html > .nav > .bar {
+    width: 8px;
+    height: 30px;
+    line-height: 28px;
+    border: 1px solid #F0F0F0;
+    position: absolute;
+    right: -10px;
+    top: 50%;
+    margin-top: -15px;
+    border-right-width: 0px;
+    transform: rotate(180deg);
+    border-radius: 3px 0px 0px 3px;
+    background-image: linear-gradient(90deg,rgba(240,240,240,.5),#f0f0f0);
+    user-select: none;
+}
 
-    .html > .nav > .bar::before {
-        font-family: 'zw-icon';
-        content: '\e127';
-        margin-left: -3px;
-        font-size: 10px;
-    }
+.html > .nav > .bar::before {
+    font-family: 'zw-icon';
+    content: '\e127';
+    margin-left: -3px;
+    font-size: 10px;
+}
 
-    .html > .nav > .barclose {
-        border-radius: 0px 3px 3px 0px;
-        transform: rotate(0deg);
-        background-image: linear-gradient(90deg,rgba(240,240,240,.5),#f0f0f0);
-    }
+.html > .nav > .barclose {
+    border-radius: 0px 3px 3px 0px;
+    transform: rotate(0deg);
+    background-image: linear-gradient(90deg,rgba(240,240,240,.5),#f0f0f0);
+}
 .desktop-icon > i, .icon > i {
     font-size: 30px;
     width: 52px;
