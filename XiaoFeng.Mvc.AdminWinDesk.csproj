@@ -26,12 +26,16 @@
 		<PackageTags>XiaoFeng;FAYELF;ORM;MVC;WindowDesktop;</PackageTags>
 		<PackageProjectUrl>https://www.eelf.cn</PackageProjectUrl>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
-		<PackageReleaseNotes>修复后台路径改变后退出后登录路径不正确，桌面图标网址不正确的bug;</PackageReleaseNotes>
+		<PackageReleaseNotes>修复后台路径改变后退出后登录路径不正确，桌面图标网址不正确的bug;弹出窗口增加几个方向的改变窗体大小事件;</PackageReleaseNotes>
 		<PackageIconUrl>http://nuget.fayelf.com/x.png</PackageIconUrl>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 	</PropertyGroup>
 	<ItemGroup>
-		<None Include="README.md" Pack="true" PackagePath="\"/>
+		<None Include="README.md" Pack="true" PackagePath="\" />
+		<None Include="wwwroot\windesk\css\alerter.css" />
+		<None Include="wwwroot\windesk\css\alerter.min.css" />
+		<None Include="wwwroot\windesk\scripts\alerter.js" />
+		<None Include="wwwroot\windesk\scripts\alerter.min.js" />
 	</ItemGroup>
 	<ItemGroup>
 		<EmbeddedResource Include="wwwroot\windesk\**\*.jpg" />
@@ -42,6 +46,10 @@
 		<Content Remove="Areas\Admin\_ViewImports.cshtml" />
 		<Content Remove="Areas\Admin\_ViewStart.cshtml" />
 		<Content Remove="bundleconfig.json" />
+		<Content Remove="wwwroot\windesk\css\alerter.css" />
+		<Content Remove="wwwroot\windesk\css\alerter.min.css" />
+		<Content Remove="wwwroot\windesk\scripts\alerter.js" />
+		<Content Remove="wwwroot\windesk\scripts\alerter.min.js" />
 	</ItemGroup>
 	<ItemGroup Condition="$(Configuration)=='Debug'">
 		<PackageReference Include="BuildBundlerMinifier" Version="3.2.449" />

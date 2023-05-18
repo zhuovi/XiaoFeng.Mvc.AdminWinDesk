@@ -215,9 +215,16 @@
             var dd = $("<dd></dd>");
             dl.append(dd);
             if (options.resize) {
-                dd.append('<div class="resize-bottom"></div>\
-            <div class="resize-right"></div>\
-            <div class="resize"></div>');
+                dl.append('\
+                <div class="resize resize-top"></div>\
+                <div class="resize resize-bottom"></div>\
+                <div class="resize resize-left"></div>\
+                <div class="resize resize-right"></div>\
+                <div class="resize resize-right-top"></div>\
+                <div class="resize resize-right-bottom"></div>\
+                <div class="resize resize-left-top"></div>\
+                <div class="resize resize-left-bottom"></div>\
+            ');
             }
             if (options.type == 0)//弹窗
                 dd.append($('<iframe allowtransparency="true" src="' + options.content + '" width="100%" height="100%" frameborder="0"></iframe>'));
@@ -330,7 +337,7 @@
                     if (typeof options.moveup == 'function') options.moveup(dl);
                 });
             });
-            //拉宽
+            //向右拉宽
             dl.find(".resize-right").on("mousedown", function (e) {
                 e.preventDefault();
                 e.stopPropagation();
@@ -355,7 +362,34 @@
                     if (typeof options.resizing == 'function') options.resizing(dl);
                 });
             });
-            //拉高
+            //向左拉宽
+            dl.find(".resize-left").on("mousedown", function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+                config.moveResize = true;
+                config.x = e.clientX;
+                config.left = parseFloat(dl.css("left"));
+                config.width = dl.outerWidth();
+                var moveDiv = $(".alerter-move");
+                if (moveDiv.length == 0) {
+                    moveDiv = $("<div class='alerter-move'></div>");
+                    $(document.body).append(moveDiv);
+                } else
+                    moveDiv.show();
+                $(document).bind("mousemove", function (e) {
+                    if (!config.moveResize) return;
+                    var width = config.x - e.clientX + config.width;
+                    if (width <= 120) return;
+                    var left = e.clientX - config.x + config.left;
+                    dl.css({ width: width,left: left});
+                }).bind("mouseup", function (e) {
+                    $(document).off('mousemove').off("mouseup");
+                    config.moveResize = false;
+                    moveDiv.remove();
+                    if (typeof options.resizing == 'function') options.resizing(dl);
+                });
+            });
+            //向下拉高
             dl.find(".resize-bottom").on("mousedown", function (e) {
                 e.preventDefault();
                 e.stopPropagation();
@@ -380,8 +414,35 @@
                     if (typeof options.resizing == 'function') options.resizing(dl);
                 });
             });
-            //拉宽高
-            dl.find(".resize").on("mousedown.alerter", function (e) {
+            //向上拉高
+            dl.find(".resize-top").on("mousedown", function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+                config.moveResize = true;
+                config.y = e.clientY;
+                config.height = dl.outerHeight();
+                config.top = parseFloat(dl.css("top"));
+                var moveDiv = $(".alerter-move");
+                if (moveDiv.length == 0) {
+                    moveDiv = $("<div class='alerter-move'></div>");
+                    $(document.body).append(moveDiv);
+                } else
+                    moveDiv.show();
+                $(document).on("mousemove", function (e) {
+                    if (!config.moveResize) return;
+                    var height = config.y - e.clientY + config.height;
+                    if (height <= 50) return;
+                    var top = e.clientY - config.y + config.top
+                    dl.css({ height: height,top: top });
+                }).on("mouseup", function (e) {
+                    $(document).off('mousemove').off("mouseup");
+                    config.moveResize = false;
+                    moveDiv.remove();
+                    if (typeof options.resizing == 'function') options.resizing(dl);
+                });
+            });
+            //右下拉宽高
+            dl.find(".resize-right-bottom").on("mousedown.alerter", function (e) {
                 e.preventDefault();
                 e.stopPropagation();
                 config.moveResize = true;
@@ -408,6 +469,98 @@
                     if (typeof options.resizing == 'function') options.resizing(dl);
                 });
             });
+            //右上拉宽高
+            dl.find(".resize-right-top").on("mousedown.alerter", function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+                config.moveResize = true;
+                config.x = e.clientX;
+                config.y = e.clientY;
+                config.width = dl.outerWidth();
+                config.height = dl.outerHeight();
+                config.top = parseFloat(dl.css("top"));
+                var moveDiv = $(".alerter-move");
+                if (moveDiv.length == 0) {
+                    moveDiv = $("<div class='alerter-move'></div>");
+                    $(document.body).append(moveDiv);
+                } else
+                    moveDiv.show();
+                $(document).on("mousemove.alerter", function (e) {
+                    if (!config.moveResize) return;
+                    var width = e.clientX - config.x + config.width;
+                    var height =  - e.clientY + config.y + config.height;
+                    if (width <= 120 || height <= 50) return;
+                    var top = e.clientY - config.y + config.top;
+                    dl.css({ width: width, height: height, top:top });
+                }).on("mouseup.alerter", function (e) {
+                    $(document).off('mousemove').off("mouseup");
+                    moveDiv.remove();
+                    config.moveResize = false;
+                    if (typeof options.resizing == 'function') options.resizing(dl);
+                });
+            });
+            //左下拉宽高
+            dl.find(".resize-left-bottom").on("mousedown.alerter", function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+                config.moveResize = true;
+                config.x = e.clientX;
+                config.y = e.clientY;
+                config.width = dl.outerWidth();
+                config.height = dl.outerHeight();
+                config.left = parseFloat(dl.css("left"));
+                var moveDiv = $(".alerter-move");
+                if (moveDiv.length == 0) {
+                    moveDiv = $("<div class='alerter-move'></div>");
+                    $(document.body).append(moveDiv);
+                } else
+                    moveDiv.show();
+                $(document).on("mousemove.alerter", function (e) {
+                    if (!config.moveResize) return;
+                    var width = -e.clientX + config.x + config.width;
+                    var height = e.clientY - config.y + config.height;
+                    if (width <= 120 || height <= 50) return;
+                    var left =  e.clientX - config.x + config.left;
+                    dl.css({ width: width, height: height, left: left });
+                }).on("mouseup.alerter", function (e) {
+                    $(document).off('mousemove').off("mouseup");
+                    moveDiv.remove();
+                    config.moveResize = false;
+                    if (typeof options.resizing == 'function') options.resizing(dl);
+                });
+            });
+            //左上拉宽高
+            dl.find(".resize-left-top").on("mousedown.alerter", function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+                config.moveResize = true;
+                config.x = e.clientX;
+                config.y = e.clientY;
+                config.width = dl.outerWidth();
+                config.height = dl.outerHeight();
+                config.top = parseFloat(dl.css("top"));
+                config.left = parseFloat(dl.css("left"));
+                var moveDiv = $(".alerter-move");
+                if (moveDiv.length == 0) {
+                    moveDiv = $("<div class='alerter-move'></div>");
+                    $(document.body).append(moveDiv);
+                } else
+                    moveDiv.show();
+                $(document).on("mousemove.alerter", function (e) {
+                    if (!config.moveResize) return;
+                    var width = -e.clientX + config.x + config.width;
+                    var height = -e.clientY + config.y + config.height;
+                    if (width <= 120 || height <= 50) return;
+                    var top = e.clientY - config.y + config.top;
+                    var left = e.clientX - config.x + config.left;
+                    dl.css({ width: width, height: height,left:left, top: top });
+                }).on("mouseup.alerter", function (e) {
+                    $(document).off('mousemove').off("mouseup");
+                    moveDiv.remove();
+                    config.moveResize = false;
+                    if (typeof options.resizing == 'function') options.resizing(dl);
+                });
+            });
             //最小化
             dl.on("click", ".min", function () {
                 var alert = $(this).parents(".alerter");
@@ -420,7 +573,7 @@
                 $(this).removeClass("restore");
                 $(this).addClass("max");
                 var alert = $(this).parents(".alerter");
-                var area = alert.attr("data-area") ||'';
+                var area = alert.attr("data-area") || '';
                 if (area == '')
                     area = '100,100,500,500';
                 var areas = area.split(',');

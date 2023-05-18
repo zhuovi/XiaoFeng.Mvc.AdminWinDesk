@@ -31,42 +31,50 @@ XiaoFeng.Mvc.AdminWinDesk generator with [XiaoFeng.Mvc.AdminWinDesk](https://git
 .NET CLI
 
 ```
-$ dotnet add package XiaoFeng.Mvc.AdminWinDesk --version 1.0.2
+$ dotnet add package XiaoFeng.Mvc.AdminWinDesk --version 1.0.3
 ```
 
 Package Manager
 
 ```
-PM> Install-Package XiaoFeng.Mvc.AdminWinDesk -Version 1.0.2
+PM> Install-Package XiaoFeng.Mvc.AdminWinDesk -Version 1.0.3
 ```
 
 PackageReference
 
 ```
-<PackageReference Include="XiaoFeng.Mvc.AdminWinDesk" Version="1.0.2" />
+<PackageReference Include="XiaoFeng.Mvc.AdminWinDesk" Version="1.0.3" />
 ```
 
 Paket CLI
 
 ```
-> paket add XiaoFeng.Mvc.AdminWinDesk --version 1.0.2
+> paket add XiaoFeng.Mvc.AdminWinDesk --version 1.0.3
 ```
 
 Script & Interactive
 
 ```
-> #r "nuget: XiaoFeng.Mvc.AdminWinDesk, 1.0.2"
+> #r "nuget: XiaoFeng.Mvc.AdminWinDesk, 1.0.3"
 ```
 
 Cake
 
 ```
 // Install XiaoFeng.Mvc.AdminWinDesk as a Cake Addin
-#addin nuget:?package=XiaoFeng.Mvc.AdminWinDesk&version=1.0.2
+#addin nuget:?package=XiaoFeng.Mvc.AdminWinDesk&version=1.0.3
 
 // Install XiaoFeng.Mvc.AdminWinDesk as a Cake Tool
-#tool nuget:?package=XiaoFeng.Mvc.AdminWinDesk&version=1.0.2
+#tool nuget:?package=XiaoFeng.Mvc.AdminWinDesk&version=1.0.3
 ```
+
+# 更新日志
+
+## 2023-05-18 v 1.0.3	
+
+1.修复后台路径改变后退出后登录路径不正确，桌面图标网址不正确的bug;
+
+2.弹出窗口增加几个方向的改变窗体大小事件;
 
 # XiaoFeng 类库包含库
 | 命名空间 | 所属类库 | 开源状态 | 说明 | 包含功能 |
