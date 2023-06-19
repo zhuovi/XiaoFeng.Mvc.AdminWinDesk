@@ -66,6 +66,10 @@ body {
     font-size:20px;
     position:relative;
 }
+.windesk .taskbar .main-menu>img{
+    max-width:35px;
+    max-height:35px;
+}
 .windesk .taskbar .search {
     height: 30px;
     background-color: #F2FBF9;

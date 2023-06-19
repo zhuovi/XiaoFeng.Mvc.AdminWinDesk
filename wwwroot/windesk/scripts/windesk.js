@@ -37,6 +37,7 @@
                 ]
             }],
             startmenu: {
+                logo:'',
                 sidebar: [],
                 submenu: [
                     {
@@ -655,11 +656,16 @@
             startmenu.find(".submenu dl dt").addClass("open");
         }
         //加载任务栏
+        var logo = '';
+        if ((options.startmenu.logo || '') == '')
+            logo = '<div class="zw-icon zw-icon-logo zw-logo-icon"></div>\
+            <div class="zw-logo-bg"></div>';
+        else
+            logo = '<img src="' + options.startmenu.logo + '"/>';
         this.LoadTaskBar = function () {
             taskbar = $('<div class="taskbar">\
         <button class="main-menu">\
-            <div class="zw-icon zw-icon-logo zw-logo-icon"></div>\
-            <div class="zw-logo-bg"></div>\
+            '+ logo + '\
         </button>\
         <button class="search">\
         <span class="zw-icon zw-icon-search"></span>\
@@ -669,7 +675,7 @@
             <ul>\
             </ul>\
         </div>\
-        <button class="time">07:50:10<br/>1985-10-06</button>\
+        <button class="time">00:00:00<br/>1985-10-06</button>\
         <button class="msg zw-icon zw-icon-sms"></button>\
         <button class="showdesk"></button>\
     </div>');

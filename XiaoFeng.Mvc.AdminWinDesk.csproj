@@ -26,7 +26,7 @@
 		<PackageTags>XiaoFeng;FAYELF;ORM;MVC;WindowDesktop;</PackageTags>
 		<PackageProjectUrl>https://www.eelf.cn</PackageProjectUrl>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
-		<PackageReleaseNotes>修复后台路径改变后退出后登录路径不正确，桌面图标网址不正确的bug;弹出窗口增加几个方向的改变窗体大小事件;</PackageReleaseNotes>
+		<PackageReleaseNotes>修复后台路径改变后退出后登录路径不正确，桌面图标网址不正确的bug;弹出窗口增加几个方向的改变窗体大小事件;增加登录接口配置;增加开始菜单logo配置;</PackageReleaseNotes>
 		<PackageIconUrl>http://nuget.fayelf.com/x.png</PackageIconUrl>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 	</PropertyGroup>

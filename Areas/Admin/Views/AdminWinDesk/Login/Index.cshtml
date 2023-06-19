@@ -22,6 +22,8 @@
             code: '/ValidateCode',
             verify:'/ValidateCode/Verify" + setting.AdminLoginCaptcha.ToString().Replace("Click", "") + @"'
         });");
+        var LoginUrl = setting.AdminLoginUrl.IsNullOrEmpty()?"":@"
+                , url: '"+ setting.AdminLoginUrl +"'";
 
 }<environment names="Development">
     <script type="text/javascript" src="/Plugin/Encrypt/core-min.js"></script>
@@ -144,7 +146,7 @@
                 obj.field[key] = encryptdata(obj.field[key]);
             });
             $.ajax({
-                type: 'post'
+                type: 'post'@Html.Raw(LoginUrl)
                 , data: obj.field
                 , success: function (e) {
                     if (e.status == 'success') {
