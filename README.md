@@ -31,44 +31,51 @@ XiaoFeng.Mvc.AdminWinDesk generator with [XiaoFeng.Mvc.AdminWinDesk](https://git
 .NET CLI
 
 ```
-$ dotnet add package XiaoFeng.Mvc.AdminWinDesk --version 1.0.3
+$ dotnet add package XiaoFeng.Mvc.AdminWinDesk --version 1.0.4
 ```
 
 Package Manager
 
 ```
-PM> Install-Package XiaoFeng.Mvc.AdminWinDesk -Version 1.0.3
+PM> Install-Package XiaoFeng.Mvc.AdminWinDesk -Version 1.0.4
 ```
 
 PackageReference
 
 ```
-<PackageReference Include="XiaoFeng.Mvc.AdminWinDesk" Version="1.0.3" />
+<PackageReference Include="XiaoFeng.Mvc.AdminWinDesk" Version="1.0.4" />
 ```
 
 Paket CLI
 
 ```
-> paket add XiaoFeng.Mvc.AdminWinDesk --version 1.0.3
+> paket add XiaoFeng.Mvc.AdminWinDesk --version 1.0.4
 ```
 
 Script & Interactive
 
 ```
-> #r "nuget: XiaoFeng.Mvc.AdminWinDesk, 1.0.3"
+> #r "nuget: XiaoFeng.Mvc.AdminWinDesk, 1.0.4"
 ```
 
 Cake
 
 ```
 // Install XiaoFeng.Mvc.AdminWinDesk as a Cake Addin
-#addin nuget:?package=XiaoFeng.Mvc.AdminWinDesk&version=1.0.3
+#addin nuget:?package=XiaoFeng.Mvc.AdminWinDesk&version=1.0.4
 
 // Install XiaoFeng.Mvc.AdminWinDesk as a Cake Tool
-#tool nuget:?package=XiaoFeng.Mvc.AdminWinDesk&version=1.0.3
+#tool nuget:?package=XiaoFeng.Mvc.AdminWinDesk&version=1.0.4
 ```
 
 # 更新日志
+
+## 2023-08-29 v 1.0.4
+
+1.增加登录接口配置;
+
+2.增加开始菜单logo配置;
+
 
 ## 2023-05-18 v 1.0.3	
 
