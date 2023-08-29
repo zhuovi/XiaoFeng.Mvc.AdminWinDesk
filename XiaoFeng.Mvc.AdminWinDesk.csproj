@@ -35,7 +35,6 @@
 		<None Include="LICENSE" Pack="true" PackagePath="\" />
 	</ItemGroup>
 	<ItemGroup>
-		<None Include="README.md" Pack="true" PackagePath="\" />
 		<None Include="wwwroot\windesk\css\alerter.css" />
 		<None Include="wwwroot\windesk\css\alerter.min.css" />
 		<None Include="wwwroot\windesk\scripts\alerter.js" />
