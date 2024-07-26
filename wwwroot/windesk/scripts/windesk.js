@@ -608,7 +608,7 @@
                 dl.append(dd);
                 if (m.hasOwnProperty("children") && m.children.length > 0) {
                     m.children.forEach(function (ms) {
-                        dd.append($('<a href="javascript:void(0);" data-url="' + ms.url + '" data-name="' + ms.name + '" data-icon="' + ms.icon + '" data-width="' + (ms.width || '') + '" data-height="' + (ms.height || '') +'"><i class="' + ms.icon + '"></i>' + ms.name + '</a>'));
+                        dd.append($('<a href="javascript:void(0);" data-url="' + ms.url + '" data-name="' + ms.name + '" data-icon="' + ms.icon + '" data-width="' + (ms.width || '') + '" data-height="' + (ms.height || '') +'" data-target="'+(ms.target||'_self')+'"><i class="' + ms.icon + '"></i>' + ms.name + '</a>'));
                     });
                 }
             });
@@ -635,8 +635,12 @@
                 var name = $(this).attr('data-name');
                 var width = $(this).attr("data-width") || '';
                 var height = $(this).attr("data-height") || '';
+                var target = $(this).attr("data-target");
                 if (url == '') return;
-                self.Open(name, url, width == '' ? 1200 : width, height == '' ? 700 : height, $(this).find("i").attr('class'));
+                if (target == '_self')
+                    self.Open(name, url, width == '' ? 1200 : width, height == '' ? 700 : height, $(this).find("i").attr('class'));
+                else
+                    window.open(url, target);
                 self.HideStartMenu();
             });
         }
