@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 	<PropertyGroup>
-		<TargetFrameworks>net5.0;net6.0;net7.0;</TargetFrameworks>
+		<TargetFrameworks>net6.0;net7.0;net8.0;net9.0;</TargetFrameworks>
 		<OutputType>Library</OutputType>
 		<Authors>Jacky</Authors>
 		<Product>XiaoFeng.Mvc后台UI 仿windows桌面效果</Product>
